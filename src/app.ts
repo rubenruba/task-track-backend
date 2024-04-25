@@ -1,4 +1,5 @@
 import express from 'express';
+import indexRouter from './routes';
 import 'dotenv/config';
 
 const app = express();
@@ -16,3 +17,6 @@ app.use((req, res, next) => {
     console.log(message);
     next();
 });
+
+// Add the router
+app.use(indexRouter);

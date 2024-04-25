@@ -8,3 +8,8 @@ export interface UserFrontDTO {
   email: string;
   admin: boolean;
 }
+
+export interface UserToken {
+  token: string;
+  user: UserFrontDTO;
+}
