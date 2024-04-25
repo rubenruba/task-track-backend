@@ -1,7 +1,10 @@
-export interface UserDTO {
-  id: string;
-  name: string;
-  surname: string;
-  email: string;
+export interface UserDTO extends UserFrontDTO {
   password: string;
+}
+
+export interface UserFrontDTO {
+  id: string;
+  username: string;
+  email: string;
+  admin: boolean;
 }
