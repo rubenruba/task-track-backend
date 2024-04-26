@@ -3,6 +3,7 @@ import { User } from "../../domain/User";
 import { UserDTO } from "../../DTO/user.dto";
 import { UserModel } from "../../models/user";
 import { UserRepository } from "./user.repository";
+import { Email } from "../../VO/Email";
 
 export class UserMongoRepository implements UserRepository {
     
@@ -19,8 +20,17 @@ export class UserMongoRepository implements UserRepository {
             throw new Error('Error getting user');
         }
     }
+
+    async getByEmail(email: Email): Promise<void | User> {
+        try {
+            const user = await UserModel.findOne({ email: email.value });
+            if(user) return this.mongoToUser(user);
+        } catch (err) {
+            throw new Error('Error getting user');
+        }
+    }
     
-    async getAllEmails(): Promise<string[]> {
+    async getAllEmails(): Promise<Email[]> {
         const users = await UserModel.find({});
         const emails = this.mongoToUsers(users).map(user => user.email);
         return emails;

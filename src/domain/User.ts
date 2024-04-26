@@ -17,14 +17,17 @@ export class User {
   get email() {
     return this._email;
   }
+  get password() {
+    return this._password;
+  }
 
   static fromDTO(dto: UserDTO): User {
     return new User(
-        dto.id, 
-        dto.username, 
-        new Email(dto.email), 
-        Password.fromHash(dto.password), 
-        dto.admin
+      dto.id,
+      dto.username,
+      new Email(dto.email),
+      Password.fromHash(dto.password),
+      dto.admin
     );
   }
 
