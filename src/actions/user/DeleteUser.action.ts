@@ -1,5 +1,3 @@
-import jwt, { Secret } from 'jsonwebtoken'
-import { UserToken } from "../../DTO/user.dto";
 import { userMongoRepository } from "../../repositories";
 import { UserRepository } from "../../repositories/user/user.repository";
 

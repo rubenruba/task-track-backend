@@ -17,8 +17,16 @@ export class User {
   get email() {
     return this._email;
   }
+  get username() {
+    return this._username;
+  }
   get password() {
     return this._password;
+  }
+
+  // Setter to update the user in action
+  set username(value: string) {
+    this._username = value;
   }
 
   static fromDTO(dto: UserDTO): User {
