@@ -13,3 +13,9 @@ export interface UserToken {
   token: string;
   user: UserFrontDTO;
 }
+
+export interface DecodedUser {
+  user: UserDTO;
+  iat: number;
+  exp: number;
+}

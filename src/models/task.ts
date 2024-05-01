@@ -8,7 +8,6 @@ const taskSchema = new Schema<TaskDTO>({
     users: { type: [String], required: true },
     completed: { type: Boolean }
 }, {
-    _id: false,
     versionKey: false
 });
 

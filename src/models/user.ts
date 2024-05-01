@@ -8,7 +8,6 @@ const userSchema = new Schema<UserDTO>({
     password: { type: String, required: true },
     admin: { type: Boolean }
 }, {
-    _id: false,
     versionKey: false
 });
 

@@ -1,22 +1,42 @@
-import express from 'express';
-import indexRouter from './routes';
+import cors from 'cors';
 import 'dotenv/config';
+import express, { Application, NextFunction, Request, Response } from 'express';
+import Mongo from './services/Mongo';
+import indexRouter from './routes';
 
-const app = express();
+export class App {
+    public app: Application;
+    private port: number;
+    public mongo: Mongo;
 
-app.listen(process.env.PORT, () => {
-    console.log(`App listening on port ${process.env.PORT}...`);
-});
+    constructor(port: number) {
+        this.port = port;
 
-// Middleware for JSON
-app.use(express.json());
+        this.mongo = new Mongo(process.env.MONGO_CLUSTER_CONNECTION ?? '');
+        this.mongo.init();
 
-// Middleware function to see the request method and url
-app.use((req, res, next) => {
-    const message = `${req.method} ${req.url}`;
-    console.log(message);
-    next();
-});
+        this.app = express();
+        
+        this.initializeMiddlewares();
+        this.listen();
+    }
+    
+    initializeMiddlewares() {
+        this.app.use(express.json());
+        this.app.use(cors());
+        this.app.use(this.loggerMiddleware);
+        this.app.use(indexRouter); // Add the application router
+    }
 
-// Add the router
-app.use(indexRouter);
+    // Middleware function to see the request method and url
+    loggerMiddleware(req: Request, res: Response, next: NextFunction) {
+        console.log(`${req.method} ${req.path}`);
+        next();
+    }
+
+    listen() {
+        this.app.listen(this.port, () => console.log(`App listening in port ${this.port}...`));
+    }
+}
+
+new App(Number(process.env.PORT) || 8080);

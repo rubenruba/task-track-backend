@@ -3,7 +3,7 @@ import { UserMongoRepository } from "../../repositories/user/userMongo.repositor
 import { Email } from "../../VO/Email";
 
 export function getByEmail(router: Router) {
-    router.get('/:email', async(req, res) => {
+    router.get('/email/:email', async(req, res) => {
        const email = new Email(req.params.email);
        
        if (!email) throw new Error('Invalid request params');
