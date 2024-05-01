@@ -1,6 +1,6 @@
 export interface TaskDTO {
     id: string;
-    date: number;
+    date: string;
     text: string;
     completed: boolean;
     users: string[];

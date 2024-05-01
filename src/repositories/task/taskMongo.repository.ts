@@ -14,9 +14,14 @@ export class TaskMongoRepository implements TaskRepository {
             throw new Error('Error getting task');
         }
     }
+    
+    async getByUserId(userId: string): Promise<Task[]> {
+        const tasks = await TaskModel.find({ users: userId });
+        return this.mongoToTasks(tasks);
+    }
 
-    async getByDate(date: number): Promise<Task[]> {
-        const tasks = await TaskModel.find({ date: date });
+    async getByUserIdAndDate(userId: string, date: string): Promise<Task[]> {
+        const tasks = await TaskModel.find({ users: userId, date: { $regex: date } });
         return this.mongoToTasks(tasks);
     }
 

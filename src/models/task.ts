@@ -3,7 +3,7 @@ import { TaskDTO } from "../DTO/task.dto";
 
 const taskSchema = new Schema<TaskDTO>({
     id: { type: String, required: true, unique: true },
-    date: { type: Number, required: true },
+    date: { type: String, required: true },
     text: { type: String, required: true },
     users: { type: [String], required: true },
     completed: { type: Boolean }
