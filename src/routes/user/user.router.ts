@@ -10,10 +10,10 @@ export const userRouter = Router();
 
 userRouter.post('/register', async (req, res) => await UserController.createUserController.run(req, res));
 userRouter.post('/login', async (req, res) => await UserController.loginController.run(req, res));
-userRouter.put('/edit', authMiddleware, async (req, res) => await UserController.updateUserController.run(req, res));
-userRouter.delete('/delete/:userId', authMiddleware, async (req, res) => await UserController.deleteController.run(req, res));
+userRouter.put('', authMiddleware, async (req, res) => await UserController.updateUserController.run(req, res));
+userRouter.delete('/:userId', authMiddleware, async (req, res) => await UserController.deleteController.run(req, res));
 
+getByEmail(userRouter);
 getAll(userRouter);
 getAllEmails(userRouter);
-getByEmail(userRouter);
 getById(userRouter);

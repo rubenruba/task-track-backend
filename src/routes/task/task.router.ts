@@ -8,8 +8,10 @@ import { getByUserIdAndDate } from "./getByUserIdAndDate";
 
 export const taskRouter = Router();
 
-taskRouter.post('', authMiddleware, async (req, res) => await TaskController.createTaskController.run(req, res));
-taskRouter.post('/update', authMiddleware, async (req, res) => await TaskController.updateTaskController.run(req, res));
+taskRouter.use(authMiddleware);
+
+taskRouter.post('', async (req, res) => await TaskController.createTaskController.run(req, res));
+taskRouter.put('', async (req, res) => await TaskController.updateTaskController.run(req, res));
 
 getById(taskRouter);
 getByUserId(taskRouter);

@@ -2,7 +2,7 @@ import { Router } from "express";
 import { UserMongoRepository } from "../../repositories/user/userMongo.repository";
 
 export function getById(router: Router) {
-    router.get('/userId/:userId', async(req, res) => {
+    router.get('/:userId', async(req, res) => {
        const userId = req.params.userId;
        
        if (!userId) throw new Error('Invalid request params');

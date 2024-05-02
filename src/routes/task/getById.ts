@@ -1,9 +1,8 @@
 import { Router } from "express";
-import { authMiddleware } from "../../middlewares/authMiddleware";
 import { TaskMongoRepository } from "../../repositories/task/taskMongo.repository";
 
 export function getById(router: Router) {
-    router.get('/:taskId', authMiddleware, async(req, res) => {
+    router.get('/:taskId', async(req, res) => {
        const taskId = req.params.taskId;
        
        if (!taskId) throw new Error('Invalid request params');
