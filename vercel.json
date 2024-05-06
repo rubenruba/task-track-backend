@@ -1,6 +1,8 @@
 {
-    "version": 1,
-    "name": "task-track-api",
+    "version": 2,
+    "name": "task-track-api", 
+    "buildCommand": "yarn build",
+    "outputDirectory": "dist",
     "builds": [
       { "src": "app.ts", "use": "@vercel/node" }
     ],
