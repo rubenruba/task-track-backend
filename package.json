@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "start": "tsnd --deps --clear --respawn src/app.ts"
+    "start": "tsnd --deps --clear --respawn src/app.ts",
+    "build": "yarn tsc"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
