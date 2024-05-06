@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.updateUserController = exports.deleteController = exports.loginController = exports.createUserController = void 0;
+const createUser_controller_1 = require("./createUser.controller");
+const deleteUser_controller_1 = require("./deleteUser.controller");
+const login_controller_1 = require("./login.controller");
+const updateUser_controller_1 = require("./updateUser.controller");
+exports.createUserController = new createUser_controller_1.CreateUserController();
+exports.loginController = new login_controller_1.LoginController();
+exports.deleteController = new deleteUser_controller_1.DeleteController();
+exports.updateUserController = new updateUser_controller_1.UpdateUserController();
