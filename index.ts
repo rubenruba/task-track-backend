@@ -13,8 +13,7 @@ mongo.init();
 
 // Middlewares
 app.use(express.json());
-// app.use(cors({ origin: "https://task-track-frontend.vercel.app" }));
-app.use(cors());
+app.use(cors({ origin: "https://task-track-frontend.vercel.app" }));
 app.use((req, _, next) => {
   console.log(`${req.method} ${req.path}`);
   next();
