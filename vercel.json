@@ -15,11 +15,5 @@
       "src": "/(.*)",
       "dest": "dist/app.js"
     }
-  ],
-  "rewrites": [
-    {
-        "source": "/(.*)", 
-        "destination": "dist/app.js"
-    }
-]
+  ]
 }
