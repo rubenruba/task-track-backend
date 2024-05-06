@@ -23,7 +23,7 @@ export class App {
     
     initializeMiddlewares() {
         this.app.use(express.json());
-        this.app.use(cors());
+        this.app.use(cors({ origin: "https://task-track-frontend.vercel.app/" }));
         this.app.use(this.loggerMiddleware);
         this.app.use(indexRouter); // Add the application router
     }
