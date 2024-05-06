@@ -1,8 +1,6 @@
 {
   "version": 2,
   "name": "task-track-api",
-  "buildCommand": "yarn build",
-  "outputDirectory": "dist",
   "builds": [
     {
       "src": "./index.ts",
