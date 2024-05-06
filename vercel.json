@@ -1,12 +1,19 @@
 {
-    "version": 2,
-    "name": "task-track-api", 
-    "buildCommand": "yarn build",
-    "outputDirectory": "dist",
-    "builds": [
-      { "src": "app.ts", "use": "@vercel/node" }
-    ],
-    "routes": [
-      { "src": "/(.*)", "dest": "/app.ts" }
-    ]
-  }
+  "version": 2,
+  "name": "task-track-api",
+  "buildCommand": "yarn build",
+  "outputDirectory": "dist",
+  "builds": [
+    {
+      "src": "dist/app.js",
+      "use": "@vercel/node",
+      "config": { "includeFiles": ["dist/**"] }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/app.js"
+    }
+  ]
+}
