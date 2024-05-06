@@ -6,7 +6,8 @@
   "type": "commonjs",
   "scripts": {
     "start": "tsnd --deps --clear --respawn src/app.ts",
-    "build": "yarn tsc"
+    "build": "yarn tsc",
+    "vercel-build": "echo Running"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
