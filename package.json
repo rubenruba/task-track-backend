@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "start": "tsnd --deps --clear --respawn src/app.ts",
+    "start": "tsnd --deps --clear --respawn index.ts",
     "build": "yarn tsc",
     "vercel-build": "echo Running"
   },

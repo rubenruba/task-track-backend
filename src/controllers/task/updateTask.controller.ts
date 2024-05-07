@@ -9,7 +9,7 @@ export class UpdateTaskController implements ExpressController {
     ) { }
     
     async run(req: Request, res: Response): Promise<void> {
-        const { task } = req.body;
+        const task = req.body;
 
         if (!task) throw new Error('Invalid request params');
 
