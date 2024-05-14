@@ -10,7 +10,7 @@ export class UpdateTask {
 
     async run(task: TaskDTO): Promise<void> {
         const taskFind = await this.taskRepository.getById(task.id);
-        if(!taskFind) throw new Error('User not found');
+        if(!taskFind) throw new Error('Task not found');
 
         taskFind.date = new Date(task.date);
         taskFind.text = task.text;
