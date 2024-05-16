@@ -1,12 +1,11 @@
-import { ListDTO } from "../DTO/list.dto";
+import { ListDTO, TaskListDTO } from "../DTO/list.dto";
 
 export class List {
   constructor(
     private _id: string,
     private _title: string,
-    private _tasks: string[],
+    private _tasks: TaskListDTO[],
     private _users: string[],
-    private _color: string,
   ) {}
 
   get id() {
@@ -16,9 +15,13 @@ export class List {
   set title(value: string) {
     this._title = value;
   }
-  set color(value: string) {
-    this._color = value;
+  set users(value: string[]) {
+    this._users = value;
   }
+  set tasks(value: TaskListDTO[]) {
+    this._tasks = value;
+  }
+
 
   static fromDTO(dto: ListDTO): List {
     return new List(
@@ -26,7 +29,6 @@ export class List {
       dto.title,
       dto.tasks,
       dto.users,
-      dto.color,
     );
   }
 
@@ -36,7 +38,6 @@ export class List {
       title: this._title,
       tasks: this._tasks,
       users: this._users,
-      color: this._color,
     };
   }
 }

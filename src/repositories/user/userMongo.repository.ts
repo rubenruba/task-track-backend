@@ -1,6 +1,6 @@
 import { Document } from "mongoose";
 import { User } from "../../domain/User";
-import { UserDTO } from "../../DTO/user.dto";
+import { UserDTO, UserEmail } from "../../DTO/user.dto";
 import { UserModel } from "../../models/user";
 import { UserRepository } from "./user.repository";
 import { Email } from "../../VO/Email";
@@ -30,9 +30,11 @@ export class UserMongoRepository implements UserRepository {
         }
     }
     
-    async getAllEmails(): Promise<Email[]> {
+    async getAllEmails(): Promise<UserEmail[]> {
         const users = await UserModel.find({});
-        const emails = this.mongoToUsers(users).map(user => user.email);
+        const emails = this.mongoToUsers(users).map(user => {
+            return { email: user.email.value, userId: user.id };
+        });
         return emails;
     }
 

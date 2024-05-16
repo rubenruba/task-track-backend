@@ -9,11 +9,11 @@ export class CreateListController implements ExpressController {
     ) { }
     
     async run(req: Request, res: Response): Promise<void> {
-        const { id, title, tasks, users, color } = req.body;
+        const { id, title, tasks, users } = req.body;
 
-        if (!id || !title || !tasks || !users || !color) throw new Error('Invalid request params');
+        if (!id || !title || !tasks || !users) throw new Error('Invalid request params');
 
-        await this.createList.run(id, title, tasks, users, color);
+        await this.createList.run(id, title, tasks, users);
         res.json();
     }
 }

@@ -4,6 +4,6 @@ import { UserMongoRepository } from "../../repositories/user/userMongo.repositor
 export function getAllEmails(router: Router) {
     router.get('/emails', async(req, res) => {       
        const emails = await new UserMongoRepository().getAllEmails();
-       res.json(emails.map(em => em.value));
+       res.json(emails);
     });
 }

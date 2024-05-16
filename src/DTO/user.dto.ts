@@ -19,3 +19,8 @@ export interface DecodedUser {
   iat: number;
   exp: number;
 }
+
+export interface UserEmail {
+  userId: string;
+  email: string;
+}

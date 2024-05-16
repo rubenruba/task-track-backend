@@ -13,7 +13,8 @@ export class UpdateList {
         if(!listFind) throw new Error('List not found');
 
         listFind.title = list.title;
-        listFind.color = list.color;
+        listFind.users = list.users;
+        listFind.tasks = list.tasks;
         
         await this.listRepository.update(listFind);
     }

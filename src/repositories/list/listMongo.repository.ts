@@ -50,7 +50,6 @@ export class ListMongoRepository implements ListRepository {
             title: model.title,
             tasks: model.tasks,
             users: model.users,
-            color: model.color,
         };
         return List.fromDTO(listDTO);
     }

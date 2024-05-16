@@ -1,7 +1,11 @@
 export interface ListDTO {
     id: string;
     title: string;
-    tasks: string[];
+    tasks: TaskListDTO[];
     users: string[];
-    color: string;
+}
+
+export interface TaskListDTO {
+    text: string;
+    completed: boolean;
 }
