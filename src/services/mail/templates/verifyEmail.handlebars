@@ -1,0 +1,47 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify Your Email</title>
+    <style>
+      header {
+        background-color: #A8DDF0;
+        padding: 10px; 
+      }
+      main { 
+        padding: 25px; 
+      }
+      button {
+        padding: 5px 10px;
+        background-color: #0197F6;
+        border: none;
+        border-radius: 10px;
+      }
+      a {
+        text-decoration: none;
+        color: #F5F5F5;
+      }
+      img {
+        width: 150px;
+      }
+      h1 {
+        margin-right: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="cid:logo" alt="Task Track Logo" />
+    </header>
+
+    <main>
+      <h2>Verify your Email</h2>
+      <p>In order to proceed, click the button below to verify your email</p>
+      <button>
+        <a href="https://task-track-frontend.vercel.app/verify/{{link}}/{{userId}}">
+          Verify your email
+        </a>
+      </button>
+    </main>
+  </body>
+</html>

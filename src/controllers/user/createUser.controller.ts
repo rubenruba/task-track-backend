@@ -13,7 +13,7 @@ export class CreateUserController implements ExpressController {
 
         if (!username || !email || !password) throw new Error('Invalid request params');
 
-        const userJWT = await this.createUser.run(username, email, password);
-        res.json(userJWT);
+        await this.createUser.run(username, email, password);
+        res.json();
     }
 }

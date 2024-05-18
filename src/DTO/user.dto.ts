@@ -1,5 +1,6 @@
 export interface UserDTO extends UserFrontDTO {
   password: string;
+  verifyToken?: string;
 }
 
 export interface UserFrontDTO {

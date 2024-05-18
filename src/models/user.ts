@@ -6,7 +6,8 @@ const userSchema = new Schema<UserDTO>({
     email: { type: String, required: true, unique: true },
     username: { type: String, required: true },
     password: { type: String, required: true },
-    admin: { type: Boolean }
+    admin: { type: Boolean },
+    verifyToken: { type: String },
 }, {
     versionKey: false
 });

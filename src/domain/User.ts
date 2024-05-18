@@ -8,7 +8,8 @@ export class User {
     private _username: string,
     private _email: Email,
     private _password: Password,
-    private _admin: boolean
+    private _admin: boolean,
+    private _verifyToken?: string,
   ) {}
 
   get id() {
@@ -23,10 +24,16 @@ export class User {
   get password() {
     return this._password;
   }
+  get verifyToken() {
+    return this._verifyToken;
+  }
 
   // Setter to update the user in action
   set username(value: string) {
     this._username = value;
+  }
+  set password(value: Password) {
+    this._password = value;
   }
 
   static fromDTO(dto: UserDTO): User {
@@ -35,7 +42,8 @@ export class User {
       dto.username,
       new Email(dto.email),
       Password.fromHash(dto.password),
-      dto.admin
+      dto.admin,
+      dto.verifyToken,
     );
   }
 
@@ -46,6 +54,7 @@ export class User {
       email: this._email.value,
       password: this._password.hash,
       admin: this._admin,
+      verifyToken: this._verifyToken,
     };
   }
 
@@ -56,5 +65,9 @@ export class User {
       email: this._email.value,
       admin: this._admin,
     };
+  }
+
+  removeVerifyToken(): void {
+    this._verifyToken = undefined;
   }
 }
