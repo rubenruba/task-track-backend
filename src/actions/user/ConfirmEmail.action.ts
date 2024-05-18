@@ -21,8 +21,8 @@ export class ConfirmEmail {
         user.removeVerifyToken();
 
         await this.userRepository.update(user);
-
-        new Mailer(user.email.value).sendWelcome(user.username);
+        
+        await new Mailer(user.email.value).sendWelcome(user.username);
 
         const token = jwt.sign({ user: user.toFrontDTO() }, this.SECRET_KEY as Secret, {
             expiresIn: this.EXPIRATION

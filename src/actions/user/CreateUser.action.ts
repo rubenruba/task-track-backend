@@ -30,6 +30,6 @@ export class CreateUser {
 
         await this.userRepository.create(userToRegister);
 
-        new Mailer(new Email(email).value).verifyEmail(verifyToken, generateId);
+        await new Mailer(new Email(email).value).verifyEmail(verifyToken, generateId);
     }
 }

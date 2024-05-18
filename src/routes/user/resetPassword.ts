@@ -11,7 +11,7 @@ export function resetPassword(router: Router) {
 
       const randomPassword = Math.random().toString(36).substring(2, 8);
       Password.fromRaw(randomPassword);
-      new Mailer(new Email(email).value).resetPassword(randomPassword);
+      await new Mailer(new Email(email).value).resetPassword(randomPassword);
       res.sendStatus(200);
     } catch (err) {
       res.sendStatus(500);
