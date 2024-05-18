@@ -62,13 +62,22 @@ export class UserMongoRepository implements UserRepository {
         }
     }    
 
+    async setActiveAccount(userId: string): Promise<void> {
+        try {
+            await UserModel.updateOne({ id: userId }, { $unset: { verifyToken: '' } });
+        } catch (err) {
+            throw new Error('Error activating account');
+        }
+    }
+
     private mongoToUser(model: UserDTO | UserDTO & Document<any, any, UserDTO>): User {
         const userDTO: UserDTO = {
             id: model.id,
             email: model.email,
             username: model.username,
             password: model.password,
-            admin: model.admin
+            admin: model.admin,
+            verifyToken: model.verifyToken,
         };
         return User.fromDTO(userDTO);
     }

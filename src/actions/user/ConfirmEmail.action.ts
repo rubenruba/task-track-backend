@@ -18,10 +18,8 @@ export class ConfirmEmail {
 
         if (!user) throw new Error('No existing user');
         if (user.verifyToken !== verifyToken) throw new Error('Verify Token Error');
-        user.removeVerifyToken();
 
-        await this.userRepository.update(user);
-        
+        await this.userRepository.setActiveAccount(userId);
         await new Mailer(user.email.value).sendWelcome(user.username);
 
         const token = jwt.sign({ user: user.toFrontDTO() }, this.SECRET_KEY as Secret, {

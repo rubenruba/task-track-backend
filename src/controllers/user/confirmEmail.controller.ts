@@ -9,7 +9,7 @@ export class ConfirmEmailController implements ExpressController {
     ) { }
 
     async run(req: Request, res: Response): Promise<void> {
-        const { userId, verifyToken } = req.body;
+        const { userId, verifyToken } = req.params;
 
         if (!userId || !verifyToken) throw new Error('Invalid request params');
 

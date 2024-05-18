@@ -66,8 +66,4 @@ export class User {
       admin: this._admin,
     };
   }
-
-  removeVerifyToken(): void {
-    this._verifyToken = undefined;
-  }
 }

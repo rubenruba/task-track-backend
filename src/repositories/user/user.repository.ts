@@ -10,4 +10,5 @@ export interface UserRepository {
     create(user: User): Promise<void>;
     update(user: User): Promise<void>;
     delete(userId: string): Promise<void>;
+    setActiveAccount(userId: string): Promise<void>;
 }
