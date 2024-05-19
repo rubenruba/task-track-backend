@@ -26,7 +26,7 @@ export class Mailer {
         });
         this._logoAttachment = {
             filename: 'logo.png',
-            path: 'src/services/mail/templates/logo.png',
+            path: path.resolve(__dirname, './templates/logo.png'),
             cid: 'logo',
         };
     }
