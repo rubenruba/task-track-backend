@@ -1,4 +1,5 @@
 import nodemailer, { Transporter } from "nodemailer";
+import path from "path";
 import { Email } from "../../VO/Email";
 import { readFile } from "fs/promises";
 import Handlebars from "handlebars";
@@ -32,7 +33,7 @@ export class Mailer {
 
     async verifyEmail(verifyCode: string, userId: string) {
         try {
-            const html = await readFile('src/services/mail/templates/verifyEmail.handlebars', { encoding: 'utf-8' });
+            const html = await readFile(path.resolve(__dirname, './templates/verifyEmail.handlebars'), { encoding: 'utf-8' });
             const template = Handlebars.compile(html);
             await this._transporter.sendMail({
                 from: this._emailFrom,
@@ -48,7 +49,7 @@ export class Mailer {
 
     async sendWelcome(username: string) {
         try {
-            const html = await readFile('src/services/mail/templates/welcome.handlebars', { encoding: 'utf-8' });
+            const html = await readFile(path.resolve(__dirname, './templates/welcome.handlebars'), { encoding: 'utf-8' });
             const template = Handlebars.compile(html);
             await this._transporter.sendMail({
                 from: this._emailFrom,
@@ -64,7 +65,7 @@ export class Mailer {
 
     async resetPassword(newPassword: string) {
         try {
-            const html = await readFile('src/services/mail/templates/resetPassword.handlebars', { encoding: 'utf-8' });
+            const html = await readFile(path.resolve(__dirname, './templates/resetPassword.handlebars'), { encoding: 'utf-8' });
             const template = Handlebars.compile(html);
             await this._transporter.sendMail({
                 from: this._emailFrom,
