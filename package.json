@@ -6,7 +6,10 @@
   "type": "commonjs",
   "scripts": {
     "start": "tsnd --deps --clear --respawn index.ts",
-    "build": "yarn tsc",
+    "build": "yarn tsc && yarn hbs-reset-password && yarn hbs-verify-email && yarn hbs-welcome",
+    "hbs-reset-password": "yarn cpx src/services/mail/templates/resetPassword.handlebars dist/src/services/mail/templates",
+    "hbs-verify-email": "yarn cpx src/services/mail/templates/verifyEmail.handlebars dist/src/services/mail/templates",
+    "hbs-welcome": "yarn cpx src/services/mail/templates/welcome.handlebars dist/src/services/mail/templates",
     "vercel-build": "echo Running"
   },
   "dependencies": {
@@ -33,6 +36,7 @@
     "@types/mongoose": "^5.11.97",
     "@types/node": "^20.12.7",
     "@types/nodemailer": "^6.4.15",
+    "cpx": "^1.5.0",
     "dotenv": "^16.4.5",
     "ts-node-dev": "^2.0.0"
   }
