@@ -1,5 +1,4 @@
 import jwt, { Secret } from "jsonwebtoken";
-import { UserToken } from "../../DTO/user.dto";
 import { userMongoRepository } from "../../repositories";
 import { UserRepository } from "../../repositories/user/user.repository";
 import { Email } from "../../VO/Email";
@@ -13,7 +12,7 @@ export class Login {
         private readonly EXPIRATION: string | undefined = process.env.TOKEN_EXPIRATION
     ) { }
 
-    async run(emailRaw: string, passwordRaw: string): Promise<UserToken> {
+    async run(emailRaw: string, passwordRaw: string): Promise<string> {
         const email = new Email(emailRaw);
         const password = Password.fromRaw(passwordRaw);
         const user = await this.userRepository.getByEmail(email);
@@ -21,11 +20,11 @@ export class Login {
         if (!user) throw new Error('User not found');
         if (!password) throw new Error('Password needed');
         if (!user.password.isEqual(password)) throw new Error('Incorrect password');
-        
+
         const token = jwt.sign({ user: user.toFrontDTO() }, this.SECRET_KEY as Secret, {
             expiresIn: this.EXPIRATION
         });
 
-        return { user: user.toFrontDTO(), token };
+        return token;
     }
 }

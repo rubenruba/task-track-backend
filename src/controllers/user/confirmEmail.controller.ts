@@ -13,7 +13,7 @@ export class ConfirmEmailController implements ExpressController {
 
         if (!userId || !verifyToken) throw new Error('Invalid request params');
 
-        const userJWT = await this.confirmEmail.run(userId, verifyToken);
-        res.json(userJWT);
+        const token = await this.confirmEmail.run(userId, verifyToken);
+        res.json(token);
     }
 }

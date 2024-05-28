@@ -10,11 +10,6 @@ export interface UserFrontDTO {
   admin: boolean;
 }
 
-export interface UserToken {
-  token: string;
-  user: UserFrontDTO;
-}
-
 export interface DecodedUser {
   user: UserDTO;
   iat: number;

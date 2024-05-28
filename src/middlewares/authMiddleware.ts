@@ -8,7 +8,7 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
         const SECRET_KEY = process.env.JWT_TOKEN;
         if (!token) throw new Error('No permissions');
         const decodedUser = jwt.verify(token, SECRET_KEY as Secret) as DecodedUser;
-        req.body.decodedUser = decodedUser.user;
+        req.body.decodedUser = decodedUser;
         next();
     } catch (err) {
         res.status(401).send('Unauthorized');

@@ -2,8 +2,6 @@ import jwt, { Secret } from "jsonwebtoken";
 import { userMongoRepository } from "../../repositories";
 import { UserRepository } from "../../repositories/user/user.repository";
 import { Mailer } from "../../services/mail/Mailer";
-import { UserToken } from "../../DTO/user.dto";
-
 
 export class ConfirmEmail {
 
@@ -13,7 +11,7 @@ export class ConfirmEmail {
         private readonly EXPIRATION: string | undefined = process.env.TOKEN_EXPIRATION,
     ) { }
 
-    async run(userId: string, verifyToken: string): Promise<UserToken> {
+    async run(userId: string, verifyToken: string): Promise<string> {
         const user = await this.userRepository.getById(userId);
 
         if (!user) throw new Error('No existing user');
@@ -26,6 +24,6 @@ export class ConfirmEmail {
             expiresIn: this.EXPIRATION
         });
 
-        return { user: user.toFrontDTO(), token };
+        return token;
     }
 }

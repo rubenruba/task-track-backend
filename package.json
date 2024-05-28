@@ -6,6 +6,7 @@
   "type": "commonjs",
   "scripts": {
     "start": "tsnd --deps --clear --respawn index.ts",
+    "type-check": "tsc --pretty --noEmit",
     "build": "yarn tsc && yarn hbs-reset-password && yarn hbs-verify-email && yarn hbs-welcome",
     "hbs-reset-password": "yarn cpx src/services/mail/templates/resetPassword.handlebars dist/src/services/mail/templates",
     "hbs-verify-email": "yarn cpx src/services/mail/templates/verifyEmail.handlebars dist/src/services/mail/templates",
