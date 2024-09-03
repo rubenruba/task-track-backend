@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 /*
     ====== CUSTOM ERROR CODES =====
     - 1000 => Invalid Params
+    - 1005 => Unauthorized
 
     === LOGIN/REGISTER ACTIONS ===
     - 1100 => User Not Found
@@ -10,6 +11,8 @@ import { Request, Response } from "express";
     - 1102 => Incorrect Password
     - 1103 => User Already Exists
     - 1104 => Verify Token Error
+    - 1105 => Passwords doesn't match
+    - 1106 => Invalid Email
 
     === TASK ACTIONS ===
     - 1200 => Task Not Found

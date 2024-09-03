@@ -1,4 +1,6 @@
 import bcrypt from 'bcryptjs';
+import { PasswordNeeded } from '../exceptions/PasswordNeeded.exception';
+import { PasswordNotMatch } from '../exceptions/PasswordNotMatch.exception';
 
 export class Password {
 
@@ -34,7 +36,7 @@ export class Password {
 
     public isEqual(password: Password): boolean {
         if (!password.hasRawPassword() && !this.hasRawPassword()) {
-            throw new Error("Passwords doesn't match");
+            throw new PasswordNotMatch();
         }
 
         if (this.hasRawPassword()) {
@@ -45,8 +47,8 @@ export class Password {
     }
 
     private static ensureIsValid(value: string): void {
-        if(value && value.length === 0) {
-            throw new Error('Password needed')
+        if (value && value.length === 0) {
+            throw new PasswordNeeded();
         }
     }
 }
