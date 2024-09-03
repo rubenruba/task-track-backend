@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import { User } from "../../domain/User";
+import { AlreadyExists } from "../../exceptions/AlreadyExists.exception";
 import { userMongoRepository } from "../../repositories";
 import { UserRepository } from "../../repositories/user/user.repository";
 import { Mailer } from "../../services/mail/Mailer";
@@ -17,7 +18,7 @@ export class CreateUser {
         const verifyToken = nanoid(32);
 
         const userSavedId = await this.userRepository.getById(generateId);
-        if (userSavedId) throw new Error('User already exists');
+        if (userSavedId) throw new AlreadyExists('User');
 
         const userToRegister = new User(
             generateId,

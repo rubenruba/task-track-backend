@@ -1,4 +1,7 @@
 import jwt, { Secret } from "jsonwebtoken";
+import { InvalidPassword } from "../../exceptions/InvalidPassword.excetion";
+import { NotFound } from "../../exceptions/NotFound.exception";
+import { PasswordNeeded } from "../../exceptions/PasswordNeeded.exception";
 import { userMongoRepository } from "../../repositories";
 import { UserRepository } from "../../repositories/user/user.repository";
 import { Email } from "../../VO/Email";
@@ -17,9 +20,9 @@ export class Login {
         const password = Password.fromRaw(passwordRaw);
         const user = await this.userRepository.getByEmail(email);
 
-        if (!user) throw new Error('User not found');
-        if (!password) throw new Error('Password needed');
-        if (!user.password.isEqual(password)) throw new Error('Incorrect password');
+        if (!user) throw new NotFound('User');
+        if (!password) throw new PasswordNeeded();
+        if (!user.password.isEqual(password)) throw new InvalidPassword();
 
         const token = jwt.sign({ user: user.toFrontDTO() }, this.SECRET_KEY as Secret, {
             expiresIn: this.EXPIRATION

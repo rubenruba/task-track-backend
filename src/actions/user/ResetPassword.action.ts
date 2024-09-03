@@ -1,3 +1,4 @@
+import { NotFound } from "../../exceptions/NotFound.exception";
 import { userMongoRepository } from "../../repositories";
 import { UserRepository } from "../../repositories/user/user.repository";
 import { Mailer } from "../../services/mail/Mailer";
@@ -14,7 +15,7 @@ export class ResetPassword {
         const newEmail = new Email(email);
         const user = await this.userRepository.getByEmail(newEmail);
 
-        if (!user) throw new Error('No existing user');
+        if (!user) throw new NotFound('User');
         const randomPassword = Math.random().toString(36).substring(2, 8);
         const newPassword = Password.fromRaw(randomPassword);
 
